@@ -15,7 +15,7 @@ namespace EjemploNCapas
             _service = new AmigoService(connectionString);
             var key = new ConsoleKeyInfo();
 
-            while ( !(key.Key== ConsoleKey.D4 || key.Key == ConsoleKey.NumPad4) )
+            while ( !(key.Key== ConsoleKey.D5 || key.Key == ConsoleKey.NumPad5) )
             {
                 key = ShowMenu();
 
@@ -32,6 +32,10 @@ namespace EjemploNCapas
                     case ConsoleKey.D3:
                     case ConsoleKey.NumPad3:
                         DeleteAmigo();
+                        break;
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
+                        UpdateAmigo();
                         break;
                 }
             }
@@ -63,7 +67,7 @@ namespace EjemploNCapas
         {
             var amigo = new Amigo();
             Console.Clear();
-            Console.WriteLine("New Amigos");
+            Console.WriteLine("New Amigo");
             Console.WriteLine("Name: ");
             amigo.nombre = Console.ReadLine();
             Console.WriteLine("Address: ");
@@ -112,13 +116,43 @@ namespace EjemploNCapas
             }
         }
 
+        private static void UpdateAmigo()
+        {
+            var amigo = new Amigo();
+            Console.Clear();
+            Console.WriteLine("Update Amigo");
+            Console.WriteLine("Name: ");
+            amigo.nombre = Console.ReadLine();
+            Console.WriteLine("Address: ");
+            amigo.direccion = Console.ReadLine();
+            Console.WriteLine("PhoneNumber: ");
+            amigo.telefono = Console.ReadLine();
+            Console.WriteLine("BirthDate: ");
+            try
+            {
+                amigo.fecnac = Convert.ToDateTime(Console.ReadLine());
+            }
+            catch
+            {
+                // ignored
+            }
+
+            var result = _service.UpdateAmigo(amigo);
+            Console.WriteLine(result);
+            Console.WriteLine("Press ESC to continue...");
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+            }
+        }
+
         private static ConsoleKeyInfo ShowMenu()
         {
             Console.Clear();
             Console.WriteLine("1. Show Amigos");
             Console.WriteLine("2. Add Amigos");
             Console.WriteLine("3. Delete Amigos");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Update Amigos");
+            Console.WriteLine("5. Exit");
             return Console.ReadKey();
         }
     }

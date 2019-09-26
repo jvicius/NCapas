@@ -42,5 +42,17 @@ namespace BusinnesLogicLayer.Services
                 return e.Message;
             }
         }
+
+        public string UpdateAmigo(Amigo amigo)
+        {
+            try
+            {
+                return _dataService.UpdateAmigo(amigo) ? "Amigo Updated Successfully" : "Error Updating Amigo";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
     }
 }
