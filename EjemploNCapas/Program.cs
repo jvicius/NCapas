@@ -15,7 +15,7 @@ namespace EjemploNCapas
             _service = new AmigoService(connectionString);
             var key = new ConsoleKeyInfo();
 
-            while ( !(key.Key== ConsoleKey.D4 || key.Key == ConsoleKey.NumPad4) )
+            while ( !(key.Key== ConsoleKey.D5 || key.Key == ConsoleKey.NumPad5) )
             {
                 key = ShowMenu();
 
@@ -32,6 +32,10 @@ namespace EjemploNCapas
                     case ConsoleKey.D3:
                     case ConsoleKey.NumPad3:
                         DeleteAmigo();
+                        break;
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
+                        ActualizarAmigo();
                         break;
                 }
             }
@@ -88,6 +92,52 @@ namespace EjemploNCapas
             }
         }
 
+        private static void ActualizarAmigo()
+        {
+            Console.Clear();
+            // ShowAmigos();
+
+            ShowAmigos(false);
+            Console.WriteLine("Insert the id of the friend that you want to Update");
+            //Console.WriteLine("Enter Id to delete:");
+            var id = 0;
+            try
+            {
+                id = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                // ignored
+            }
+
+            var amigo = new Amigo();
+            Console.Clear();
+            Console.WriteLine("New name: ");
+            amigo.nombre = Console.ReadLine();
+            Console.WriteLine("New address: ");
+            amigo.direccion = Console.ReadLine();
+            Console.WriteLine("New PhoneNumber: ");
+            amigo.telefono = Console.ReadLine();
+            Console.WriteLine("New BirthDate: ");
+            try
+            {
+                amigo.fecnac = Convert.ToDateTime(Console.ReadLine());
+            }
+            catch
+            {
+                // ignored
+            }
+
+            //var result = _service.DeleteAmigo(id);
+            var result = _service.UpdateAmigo(id,amigo);
+            Console.WriteLine(result);
+            Console.WriteLine("Press ESC to continue...");
+            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            {
+            }
+
+        }
+
         private static void DeleteAmigo()
         {
             Console.Clear();
@@ -118,7 +168,8 @@ namespace EjemploNCapas
             Console.WriteLine("1. Show Amigos");
             Console.WriteLine("2. Add Amigos");
             Console.WriteLine("3. Delete Amigos");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Update Amigos");
+            Console.WriteLine("5. Exit");
             return Console.ReadKey();
         }
     }
