@@ -35,7 +35,19 @@ namespace BusinnesLogicLayer.Services
         {
             try
             {
-                return _dataService.DeleteAmigo(idamigo) ? "Amigo Delete Successfully" : "Error in delete Amigo";
+                return _dataService.DeleteAmigo(idamigo) ? "Amigo Delete Successfully" : "Error in Delete Amigo";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public string UpdateAmigo(Amigo amigo)
+        {
+            try
+            {
+                return _dataService.UpdateAmigo(amigo) ? "Amigo Update Successfully" : "Error in Update Amigo";
             }
             catch (Exception e)
             {
