@@ -20,6 +20,36 @@ create procedure getamigos
 as
 select * from amigos
 go
+/**********UPDATË*******************/
+create procedure updateamigo
+(
+	@idamigo int,
+	@haserror bit out,
+	@nameamigo varchar(50),
+	@fecnac date,
+	@direccion varchar(50),
+	@telefono int
+)
+as
+set @haserror = 1
+begin try
+if exists(select top 1 1 from amigos where idamigo = @idamigo)
+begin
+	set @haserror = 0
+	update amigos
+	set
+		nombre = @nameamigo,
+		fecnac = @fecnac,
+		direccion = @direccion,
+		telefono = @telefono
+	where idamigo = @idamigo
+end
+end try
+begin catch
+	set @haserror = 1;
+end catch
+go
+
 
 create procedure addamigo
 (
