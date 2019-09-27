@@ -22,8 +22,7 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            var connectionString = "";
-            //var connectionString = ConfigurationManager.ConnectionStrings["SQLConnection"].ToString();
+            var connectionString = ConfigurationManager.ConnectionStrings["SQLConnection"].ToString();
             _service = new AmigoService(connectionString);
             lista = _service.GetAmigos();
         }
@@ -84,6 +83,8 @@ namespace WindowsFormsApp1
             fechalabel.Visible = false;
             birthtb.Visible = false;
             next.Visible = false;
+            dataGridView1.Update();
+            dataGridView1.Refresh();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -110,6 +111,8 @@ namespace WindowsFormsApp1
             idlabel.Visible = false;
             idtb.Visible = false;
             next2.Visible = false;
+            dataGridView1.Update();
+            dataGridView1.Refresh();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -170,6 +173,8 @@ namespace WindowsFormsApp1
             fechalabel.Visible = false;
             birthtb.Visible = false;
             updateboton.Visible = false;
+            dataGridView1.Update();
+            dataGridView1.Refresh();
         }
     }
 }
