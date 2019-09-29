@@ -98,5 +98,21 @@ namespace EjemploNCapas
         {
             this.Dispose();
         }
+
+        private void Label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            var list = _service.GetAmigos();
+
+            foreach(Amigo amigo in list)
+            {
+                if (amigo.idamigo.ToString() == textBox11.Text)
+                    _service.AddAmigo(amigo.Clone());
+            }
+        }
     }
 }
