@@ -43,6 +43,7 @@ namespace EjemploNCapas
             try
             {
                 amigo.fecnac = dateTimePicker1.Value;
+                MessageBox.Show("Añadido correctamente");
             }
             catch
             {
@@ -66,6 +67,7 @@ namespace EjemploNCapas
             try
             {
                 id = Convert.ToInt32(numericUpDown2.Value);
+                MessageBox.Show("Actualizado correctamente");
             }
             catch
             {
@@ -102,6 +104,7 @@ namespace EjemploNCapas
             try
             {
                 id = Convert.ToInt32(numericUpDown1.Value);
+                MessageBox.Show("Eliminado correctamente");
             }
             catch
             {
@@ -116,6 +119,21 @@ namespace EjemploNCapas
         private void button5_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        //CLONAR
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var list = _service.GetAmigos();
+
+            foreach(Amigo amigo in list)
+            {
+                if(amigo.idamigo.ToString() == numericUpDown3.Value.ToString())
+                {
+                    _service.AddAmigo(amigo.Clonar());
+                    MessageBox.Show("Clonado correctamente");
+
+                }
+            }
         }
     }
 }
