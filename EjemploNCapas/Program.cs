@@ -1,21 +1,27 @@
 ﻿using BusinnesLogicLayer.Services;
 using DomainLayer.Models;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace EjemploNCapas
 {
     internal class Program
     {
         private static AmigoService _service;
+        public static List<Amigo> list;
 
         private static void Main()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["SQLConnection"].ToString();
-            _service = new AmigoService(connectionString);
+            //_service = new AmigoService(connectionString);
+            _service = AmigoService.GetAmigoService(connectionString);
             var key = new ConsoleKeyInfo();
 
-            while ( !(key.Key== ConsoleKey.D5 || key.Key == ConsoleKey.NumPad5) )
+            Application.Run(new Form1());
+
+            /*while ( !(key.Key== ConsoleKey.D5 || key.Key == ConsoleKey.NumPad5) )
             {
                 key = ShowMenu();
 
@@ -38,18 +44,19 @@ namespace EjemploNCapas
                         ActualizarAmigo();
                         break;
                 }
-            }
+            }*/
         }
 
-        private static void ShowAmigos(bool wait = true)
+        public static void ShowAmigos(bool wait = true)
         {
             if (wait)
             {
                 Console.Clear();
             }
 
-            var list = _service.GetAmigos();
-            foreach (var item in list)
+            //var list = _service.GetAmigos();
+            list = _service.GetAmigos();
+            /*foreach (var item in list)
             {
                 Console.WriteLine($"{item.idamigo}. {item.nombre} | {item.telefono} | {item.direccion} | {item.fecnac} ");
             }
@@ -60,7 +67,7 @@ namespace EjemploNCapas
                 while (Console.ReadKey().Key != ConsoleKey.Escape)
                 {
                 }
-            }
+            }*/
         }
 
         private static void AddAmigo()
@@ -136,6 +143,11 @@ namespace EjemploNCapas
             {
             }
 
+        }
+
+        public static string ActualizarAmigo(int id, Amigo amigo)
+        {
+            return _service.UpdateAmigo(id, amigo);
         }
 
         private static void DeleteAmigo()

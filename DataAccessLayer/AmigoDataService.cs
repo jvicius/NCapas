@@ -9,10 +9,21 @@ namespace DataAccessLayer
     public class AmigoDataService
     {
         private readonly SqlClient _client;
+        private static AmigoDataService _amigoDataService;
 
-        public AmigoDataService(string connectionString)
+        private AmigoDataService(string connectionString)
         {
-            _client = new SqlClient(connectionString);
+            //_client = new SqlClient(connectionString);
+            _client = SqlClient.GetSqlClient(connectionString);
+        }
+
+        public static AmigoDataService GetAmigoDataService(string connectionString)
+        {
+            if(_amigoDataService == null)
+            {
+                _amigoDataService = new AmigoDataService(connectionString);
+            }
+            return _amigoDataService;
         }
 
         public List<Amigo> GetAmigos()
@@ -24,7 +35,7 @@ namespace DataAccessLayer
                 {
                     var command = new SqlCommand
                     {
-                        Connection = _client.Conecction,
+                        Connection = _client.GetConnection(),
                         CommandText = "getamigos",
                         CommandType = CommandType.StoredProcedure
                     };
@@ -64,7 +75,7 @@ namespace DataAccessLayer
                 {
                     var command = new SqlCommand
                     {
-                        Connection = _client.Conecction,
+                        Connection = _client.GetConnection(),
                         CommandText = "addamigo",
                         CommandType = CommandType.StoredProcedure
                     };
@@ -132,7 +143,7 @@ namespace DataAccessLayer
                 {
                     var command = new SqlCommand
                     {
-                        Connection = _client.Conecction,
+                        Connection = _client.GetConnection(),
                         CommandText = "deleteamigo",
                         CommandType = CommandType.StoredProcedure
                     };
@@ -179,7 +190,7 @@ namespace DataAccessLayer
                 {
                     var command = new SqlCommand
                     {
-                        Connection = _client.Conecction,
+                        Connection = _client.GetConnection(),
                         CommandText = "updateamigo",
                         CommandType = CommandType.StoredProcedure
                     };

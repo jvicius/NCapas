@@ -7,11 +7,23 @@ namespace BusinnesLogicLayer.Services
 {
     public class AmigoService
     {
-        private readonly AmigoDataService _dataService;
+        //private readonly AmigoDataService _dataService;
+        private static AmigoDataService _dataService;
+        private static AmigoService _amigoService;
 
-        public AmigoService(string connectionString)
+        private AmigoService(string connectionString)
         {
-            _dataService = new AmigoDataService(connectionString);
+            //_dataService = new AmigoDataService(connectionString);
+            _dataService = AmigoDataService.GetAmigoDataService(connectionString);
+        }
+
+        public static AmigoService GetAmigoService(string connectionString)
+        {
+            if(_amigoService == null)
+            {
+                _amigoService = new AmigoService(connectionString);
+            }
+            return _amigoService;
         }
 
         public List<Amigo> GetAmigos()
