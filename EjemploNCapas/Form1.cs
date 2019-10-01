@@ -14,6 +14,7 @@ namespace EjemploNCapas
     public partial class Form1 : Form
     {
         List<Amigo> amigos;
+        Amigo amigo = new Amigo();
 
         public Form1()
         {
@@ -67,7 +68,7 @@ namespace EjemploNCapas
             {
                 try
                 {
-                    Amigo amigo = new Amigo();
+                    //Amigo amigo = new Amigo();
                     amigo.nombre = textBoxName.Text;
                     amigo.direccion = textBoxAdress.Text;
                     amigo.telefono = textBoxPhone.Text;
@@ -103,7 +104,6 @@ namespace EjemploNCapas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Amigo amigo = new Amigo();
             amigo.nombre = textBoxName.Text;
             amigo.direccion = textBoxAdress.Text;
             amigo.telefono = textBoxPhone.Text;
@@ -113,6 +113,20 @@ namespace EjemploNCapas
             MessageBox.Show(result);
             ShowFriends();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            amigo.Clone();
+
+            amigo.nombre = textBoxName.Text;
+            amigo.direccion = textBoxAdress.Text;
+            amigo.telefono = textBoxPhone.Text;
+            amigo.fecnac = dateTimePicker1.Value;
+
+            var result = Program.AddFriend(amigo);
+            MessageBox.Show(result);
+            ShowFriends();
         }
     }
 }

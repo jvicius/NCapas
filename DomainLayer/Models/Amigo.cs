@@ -17,5 +17,10 @@ namespace DomainLayer.Models
         public DateTime fecnac { set; get; }
         public string direccion { set; get; }
         public string telefono { set; get; }
+
+        public Amigo Clone()
+        {
+            return new Amigo { idamigo = idamigo, nombre = nombre, direccion = direccion, telefono = telefono, fecnac = fecnac };
+        }
     }
 }

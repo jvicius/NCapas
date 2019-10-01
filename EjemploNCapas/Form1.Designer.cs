@@ -42,6 +42,7 @@
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Update = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(32, 114);
+            this.button2.Location = new System.Drawing.Point(32, 83);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 48);
             this.button2.TabIndex = 2;
@@ -163,11 +164,22 @@
             this.Update.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Update.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(32, 149);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(96, 48);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Clone Friend";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 513);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBoxPhone);
             this.Controls.Add(this.textBoxAdress);
@@ -203,5 +215,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Update;
+        private System.Windows.Forms.Button button3;
     }
 }
