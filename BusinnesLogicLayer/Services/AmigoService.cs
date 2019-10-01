@@ -7,11 +7,11 @@ namespace BusinnesLogicLayer.Services
 {
     public class AmigoService
     {
-        private readonly AmigoDataService _dataService;
+        private readonly ADSSingleton _dataService;
 
         public AmigoService(string connectionString)
         {
-            _dataService = new AmigoDataService(connectionString);
+            _dataService = ADSSingleton.GetInstance(connectionString);
         }
 
         public List<Amigo> GetAmigos()

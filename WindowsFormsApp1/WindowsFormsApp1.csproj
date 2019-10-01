@@ -85,6 +85,10 @@
       <Project>{DC3145B5-BB39-4C92-8D63-D6A15B8F7470}</Project>
       <Name>BusinnesLogicLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{D32E06B8-6178-47AF-BEEE-05C59BAC173D}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">
       <Project>{6F0DA261-6132-4A38-8504-4641D36C6D97}</Project>
       <Name>DomainLayer</Name>

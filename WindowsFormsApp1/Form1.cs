@@ -1,4 +1,5 @@
 ﻿using BusinnesLogicLayer.Services;
+using DataAccessLayer;
 using DomainLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,17 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         List<Amigo> lista;
-        private static AmigoService _service;
+        private static ADSSingleton _service;
         public Form1()
         {
             InitializeComponent();
             var connectionString = ConfigurationManager.ConnectionStrings["SQLConnection"].ToString();
-            _service = new AmigoService(connectionString);
-            lista = _service.GetAmigos();
+            _service = ADSSingleton.GetInstance(connectionString);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lista = _service.GetAmigos();
             dataGridView1.DataSource = new BindingSource(lista, null);
             dataGridView1.DataSource = typeof(List<Amigo>);
             dataGridView1.DataSource = lista;
@@ -175,6 +176,24 @@ namespace WindowsFormsApp1
             updateboton.Visible = false;
             dataGridView1.Update();
             dataGridView1.Refresh();
+        }
+
+        private void clonebt_Click(object sender, EventArgs e)
+        {
+            instrucciones.Text = "INGRESE LA INFORMACIÓN PEDIDA:";
+            idlabel.Visible = true;
+            idtb.Visible = true;
+            nextclonebt.Visible = true;
+        }
+
+        private void nextclonebt_Click(object sender, EventArgs e)
+        {
+            Amigo amigo = _service.CloneAmigo(Convert.ToInt32(idtb.Text));
+            _service.AddAmigo(amigo);
+            instrucciones.Text = "AMIGO CLONADO EXITOSAMENTE";
+            idlabel.Visible = false;
+            idtb.Visible = false;
+            nextclonebt.Visible = false;
         }
     }
 }

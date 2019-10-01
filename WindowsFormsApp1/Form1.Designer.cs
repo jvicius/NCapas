@@ -49,12 +49,14 @@
             this.next2 = new System.Windows.Forms.Button();
             this.idtb = new System.Windows.Forms.TextBox();
             this.updateboton = new System.Windows.Forms.Button();
+            this.clonebt = new System.Windows.Forms.Button();
+            this.nextclonebt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(94, 70);
+            this.button1.Location = new System.Drawing.Point(29, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 23);
             this.button1.TabIndex = 0;
@@ -64,7 +66,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(214, 70);
+            this.button2.Location = new System.Drawing.Point(149, 70);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(114, 23);
             this.button2.TabIndex = 1;
@@ -74,7 +76,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(334, 70);
+            this.button3.Location = new System.Drawing.Point(269, 70);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(114, 23);
             this.button3.TabIndex = 2;
@@ -84,7 +86,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(454, 70);
+            this.button4.Location = new System.Drawing.Point(389, 70);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(114, 23);
             this.button4.TabIndex = 3;
@@ -255,11 +257,34 @@
             this.updateboton.Visible = false;
             this.updateboton.Click += new System.EventHandler(this.updateboton_Click);
             // 
+            // clonebt
+            // 
+            this.clonebt.Location = new System.Drawing.Point(509, 70);
+            this.clonebt.Name = "clonebt";
+            this.clonebt.Size = new System.Drawing.Size(114, 23);
+            this.clonebt.TabIndex = 21;
+            this.clonebt.Text = "Clone Friend";
+            this.clonebt.UseVisualStyleBackColor = true;
+            this.clonebt.Click += new System.EventHandler(this.clonebt_Click);
+            // 
+            // nextclonebt
+            // 
+            this.nextclonebt.Location = new System.Drawing.Point(287, 175);
+            this.nextclonebt.Name = "nextclonebt";
+            this.nextclonebt.Size = new System.Drawing.Size(75, 23);
+            this.nextclonebt.TabIndex = 22;
+            this.nextclonebt.Text = "Next";
+            this.nextclonebt.UseVisualStyleBackColor = true;
+            this.nextclonebt.Visible = false;
+            this.nextclonebt.Click += new System.EventHandler(this.nextclonebt_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(658, 500);
+            this.Controls.Add(this.nextclonebt);
+            this.Controls.Add(this.clonebt);
             this.Controls.Add(this.updateboton);
             this.Controls.Add(this.idtb);
             this.Controls.Add(this.next2);
@@ -312,6 +337,8 @@
         private System.Windows.Forms.Button next2;
         private System.Windows.Forms.TextBox idtb;
         private System.Windows.Forms.Button updateboton;
+        private System.Windows.Forms.Button clonebt;
+        private System.Windows.Forms.Button nextclonebt;
     }
 }
 
