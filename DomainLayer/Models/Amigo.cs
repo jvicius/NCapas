@@ -4,6 +4,14 @@ namespace DomainLayer.Models
 {
     public class Amigo
     {
+        public Amigo() { }
+        public Amigo(string n, string d, string t, DateTime f)
+        {
+            nombre = n;
+            direccion = d;
+            telefono = t;
+            fecnac = f;
+        }
         public int idamigo { set; get; }
         public string nombre { set; get; }
         public DateTime fecnac { set; get; }

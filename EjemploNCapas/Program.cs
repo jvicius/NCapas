@@ -99,6 +99,11 @@ namespace EjemploNCapas
             }
         }
 
+        public static string AddFriend(Amigo amigo)
+        {
+            return _service.AddAmigo(amigo);
+        }
+
         private static void ActualizarAmigo()
         {
             Console.Clear();
@@ -148,6 +153,11 @@ namespace EjemploNCapas
         public static string ActualizarAmigo(int id, Amigo amigo)
         {
             return _service.UpdateAmigo(id, amigo);
+        }
+
+        public static string DeleteFriend(int id)
+        {
+            return _service.DeleteAmigo(id);
         }
 
         private static void DeleteAmigo()

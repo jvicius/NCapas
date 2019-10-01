@@ -22,27 +22,37 @@ namespace EjemploNCapas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /*Program.ShowAmigos();
+            amigos = Program.list;
+            dataGridView1.DataSource = new BindingSource(amigos, null);
+            dataGridView1.DataSource = typeof(List<Amigo>);
+            dataGridView1.DataSource = amigos;*/
+            ShowFriends();
+        }
+
+        private void ShowFriends()
+        {
             Program.ShowAmigos();
             amigos = Program.list;
             dataGridView1.DataSource = new BindingSource(amigos, null);
             dataGridView1.DataSource = typeof(List<Amigo>);
             dataGridView1.DataSource = amigos;
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*textBoxName.Text = "";
-            textBoxAdress.Text = "";
-            textBoxPhone.Text = "";
-            dateTimePicker1.Value = DateTime.Today;*/
-            //e.ColumnIndex  == 0 borrar
-            //1 editar
-            //2 update
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 0) //borrar
             {
-
+                try
+                {
+                    MessageBox.Show(Program.DeleteFriend(amigos[e.RowIndex].idamigo));
+                }
+                catch { }
+                finally
+                {
+                    ShowFriends();
+                }
             }
-            else if (e.ColumnIndex == 1)
+            else if (e.ColumnIndex == 1) //editar
             {
                 try
                 {
@@ -53,7 +63,7 @@ namespace EjemploNCapas
                 }
                 catch { }
             }
-            else if (e.ColumnIndex == 2)
+            else if (e.ColumnIndex == 2) //update
             {
                 try
                 {
@@ -63,11 +73,13 @@ namespace EjemploNCapas
                     amigo.telefono = textBoxPhone.Text;
                     amigo.fecnac = dateTimePicker1.Value;
 
-                    var result = Program.ActualizarAmigo(e.RowIndex, amigo);
+                    var result = Program.ActualizarAmigo(amigos[e.RowIndex].idamigo, amigo);
                     MessageBox.Show(amigo.nombre + amigo.direccion + result + e.RowIndex);
-                    dataGridView1.DataSource = new BindingSource(amigos, null);
-                    dataGridView1.DataSource = typeof(List<Amigo>);
-                    dataGridView1.DataSource = amigos;
+                    ShowFriends();
+                    textBoxName.Text = "";
+                    textBoxAdress.Text = "";
+                    textBoxPhone.Text = "";
+                    dateTimePicker1.Value = DateTime.Today;
                 }
                 catch { }
             }
@@ -86,6 +98,20 @@ namespace EjemploNCapas
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Amigo amigo = new Amigo();
+            amigo.nombre = textBoxName.Text;
+            amigo.direccion = textBoxAdress.Text;
+            amigo.telefono = textBoxPhone.Text;
+            amigo.fecnac = dateTimePicker1.Value;
+
+            var result = Program.AddFriend(amigo);
+            MessageBox.Show(result);
+            ShowFriends();
 
         }
     }
