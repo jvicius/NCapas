@@ -8,9 +8,28 @@ namespace DataAccessLayer
 {
     public class AmigoDataService
     {
+        public static AmigoDataService _instance;
+
+        private static readonly object _lock = new object();
+
         private readonly SqlClient _client;
 
-        public AmigoDataService(string connectionString)
+        public static AmigoDataService GetInstance(string connectionString)
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new AmigoDataService(connectionString);
+                    }
+                }
+            }
+            return _instance;
+        }
+
+        private AmigoDataService(string connectionString)
         {
             _client = new SqlClient(connectionString);
         }

@@ -133,5 +133,16 @@ namespace EjemploNCapas
             modBirth.Text = "";
             modID.Text = "";
         }
+
+        private void CloneB_Click(object sender, EventArgs e)
+        {
+            var list = _service.GetAmigos();
+
+            foreach(Amigo amigo in list)
+            {
+                if (amigo.idamigo.ToString() == idClone.Text)
+                    _service.AddAmigo(amigo.Clone());
+            }
+        }
     }
 }
