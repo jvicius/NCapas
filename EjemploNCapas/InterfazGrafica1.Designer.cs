@@ -48,6 +48,8 @@
             this.TID = new System.Windows.Forms.TextBox();
             this.BAcceptID = new System.Windows.Forms.Button();
             this.BAcceptUpdate = new System.Windows.Forms.Button();
+            this.Bclone = new System.Windows.Forms.Button();
+            this.BaceptarClone = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +65,7 @@
             // 
             // BAdd
             // 
-            this.BAdd.Location = new System.Drawing.Point(133, 46);
+            this.BAdd.Location = new System.Drawing.Point(116, 46);
             this.BAdd.Name = "BAdd";
             this.BAdd.Size = new System.Drawing.Size(75, 23);
             this.BAdd.TabIndex = 1;
@@ -73,7 +75,7 @@
             // 
             // Bdelete
             // 
-            this.Bdelete.Location = new System.Drawing.Point(240, 46);
+            this.Bdelete.Location = new System.Drawing.Point(210, 46);
             this.Bdelete.Name = "Bdelete";
             this.Bdelete.Size = new System.Drawing.Size(75, 23);
             this.Bdelete.TabIndex = 2;
@@ -83,7 +85,7 @@
             // 
             // Bupdate
             // 
-            this.Bupdate.Location = new System.Drawing.Point(345, 46);
+            this.Bupdate.Location = new System.Drawing.Point(297, 46);
             this.Bupdate.Name = "Bupdate";
             this.Bupdate.Size = new System.Drawing.Size(75, 23);
             this.Bupdate.TabIndex = 3;
@@ -245,11 +247,34 @@
             this.BAcceptUpdate.Visible = false;
             this.BAcceptUpdate.Click += new System.EventHandler(this.BAcceptUpdate_Click);
             // 
+            // Bclone
+            // 
+            this.Bclone.Location = new System.Drawing.Point(387, 46);
+            this.Bclone.Name = "Bclone";
+            this.Bclone.Size = new System.Drawing.Size(75, 23);
+            this.Bclone.TabIndex = 20;
+            this.Bclone.Text = "Clone";
+            this.Bclone.UseVisualStyleBackColor = true;
+            this.Bclone.Click += new System.EventHandler(this.Bclone_Click);
+            // 
+            // BaceptarClone
+            // 
+            this.BaceptarClone.Location = new System.Drawing.Point(81, 101);
+            this.BaceptarClone.Name = "BaceptarClone";
+            this.BaceptarClone.Size = new System.Drawing.Size(75, 23);
+            this.BaceptarClone.TabIndex = 21;
+            this.BaceptarClone.Text = "Accept";
+            this.BaceptarClone.UseVisualStyleBackColor = true;
+            this.BaceptarClone.Visible = false;
+            this.BaceptarClone.Click += new System.EventHandler(this.BaceptarClone_Click);
+            // 
             // InterfazGrafica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 295);
+            this.Controls.Add(this.BaceptarClone);
+            this.Controls.Add(this.Bclone);
             this.Controls.Add(this.BAcceptUpdate);
             this.Controls.Add(this.BAcceptID);
             this.Controls.Add(this.TID);
@@ -300,5 +325,7 @@
         private System.Windows.Forms.TextBox TID;
         private System.Windows.Forms.Button BAcceptID;
         private System.Windows.Forms.Button BAcceptUpdate;
+        private System.Windows.Forms.Button Bclone;
+        private System.Windows.Forms.Button BaceptarClone;
     }
 }

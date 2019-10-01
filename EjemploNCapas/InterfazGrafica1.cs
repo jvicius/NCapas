@@ -57,6 +57,7 @@ namespace EjemploNCapas
             TPN.Visible = true;
             TBD.Visible = true;
             dataGridView1.Visible = false;
+            BaceptarClone.Visible = false;
 
             TID.Visible = true;
             LID.Visible = true;
@@ -85,6 +86,7 @@ namespace EjemploNCapas
             LID.Visible = false;
             BAcceptID.Visible = false;
             BAcceptUpdate.Visible = false;
+            BaceptarClone.Visible = false;
 
             dataGridView1.Visible = true;
 
@@ -101,6 +103,7 @@ namespace EjemploNCapas
             LID.Visible = false;
             BAcceptID.Visible = false;
             BAcceptUpdate.Visible = false;
+            BaceptarClone.Visible = false;
 
             Baccept.Visible = true;
             Lname.Visible = true;
@@ -127,7 +130,7 @@ namespace EjemploNCapas
             TPN.Visible = false;
             TBD.Visible = false;
             BAcceptUpdate.Visible = false;
-
+            BaceptarClone.Visible = false;
             dataGridView1.Visible = false;
 
             TID.Visible = true;
@@ -202,6 +205,40 @@ namespace EjemploNCapas
             TAddress.Text = "";
             TPN.Text = "";
             TBD.Text = "";
+        }
+
+        private void Bclone_Click(object sender, EventArgs e)
+        {
+            BaceptarClone.Visible = true;
+            Baccept.Visible = false;
+            Lname.Visible = false;
+            Laddress.Visible = false;
+            LPNum.Visible = false;
+            LBD.Visible = false;
+            TName.Visible = false;
+            TAddress.Visible = false;
+            TPN.Visible = false;
+            TBD.Visible = false;
+            BAcceptUpdate.Visible = false;
+            BaceptarClone.Visible = false;
+            dataGridView1.Visible = false;
+
+            TID.Visible = true;
+            LID.Visible = true;
+            BAcceptID.Visible = false;
+        }
+
+        private void BaceptarClone_Click(object sender, EventArgs e)
+        {
+            var list = _service.GetAmigos();
+
+            foreach(Amigo amigo in list)
+            {
+                if (amigo.idamigo.ToString() == TID.Text)
+                {
+                    _service.AddAmigo(amigo.Clone());
+                }
+            }
         }
     }
 }
