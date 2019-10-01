@@ -9,10 +9,19 @@ namespace DataAccessLayer
     public class AmigoDataService
     {
         private readonly SqlClient _client;
+        private static AmigoDataService _instance;
 
-        public AmigoDataService(string connectionString)
+        private AmigoDataService(string connectionString)
         {
             _client = new SqlClient(connectionString);
+        }
+
+        public static AmigoDataService GetInstance(string connectionString)
+        {
+            if (_instance == null)
+                _instance = new AmigoDataService(connectionString);
+
+            return _instance;
         }
 
         public List<Amigo> GetAmigos()

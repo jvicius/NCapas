@@ -15,6 +15,7 @@ namespace EjemploNCapas
     public partial class GUI : Form
     {
         private AmigoService _service;
+        private List<Amigo> _amigos;
 
         public GUI(AmigoService service)
         {
@@ -75,9 +76,9 @@ namespace EjemploNCapas
         {
             amigos.Show();
 
-            var list = _service.GetAmigos();
+            _amigos = _service.GetAmigos();
             var source = new BindingSource();
-            source.DataSource = list;
+            source.DataSource = _amigos;
             dataGridView1.DataSource = source;
         }
 
@@ -107,21 +108,28 @@ namespace EjemploNCapas
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text == "")
+            try
             {
-                MessageBox.Show("Write an Id.");
-                return;
+                if (textBox1.Text == "")
+                {
+                    MessageBox.Show("Write an Id.");
+                    return;
+                }
+
+                var id = Convert.ToInt32(textBox1.Text);
+
+                var result = _service.DeleteAmigo(id);
+                MessageBox.Show(result);
+
+                textBox1.Text = "";
+
+                HideAll();
+                inicio.Show();
             }
-
-            var id = Convert.ToInt32(textBox1.Text);
-
-            var result = _service.DeleteAmigo(id);
-            MessageBox.Show(result);
-
-            textBox1.Text = "";
-
-            HideAll();
-            inicio.Show();
+            catch
+            {
+                MessageBox.Show("Id must be an int number.");
+            }
         }
 
         private void Agregar_Click(object sender, EventArgs e)
@@ -159,37 +167,57 @@ namespace EjemploNCapas
 
         private void Actualizar_Click(object sender, EventArgs e)
         {
-            if (updateId.Text == "" |updateName.Text == "" | updateAddress.Text == "" | updatePhone.Text == "" | updateBirthDate.Text == "")
-            {
-                MessageBox.Show("Fill all the fields.");
-                return;
-            }
-
-            var amigo = new Amigo();
-            amigo.idamigo = Convert.ToInt32(updateId.Text);
-            amigo.nombre = updateName.Text;
-            amigo.direccion = updateAddress.Text;
-            amigo.telefono = updatePhone.Text;
             try
             {
-                amigo.fecnac = Convert.ToDateTime(updateBirthDate.Text);
+                if (updateId.Text == "" | updateName.Text == "" | updateAddress.Text == "" | updatePhone.Text == "" | updateBirthDate.Text == "")
+                {
+                    MessageBox.Show("Fill all the fields.");
+                    return;
+                }
+
+                var amigo = new Amigo();
+                amigo.idamigo = Convert.ToInt32(updateId.Text);
+                amigo.nombre = updateName.Text;
+                amigo.direccion = updateAddress.Text;
+                amigo.telefono = updatePhone.Text;
+                try
+                {
+                    amigo.fecnac = Convert.ToDateTime(updateBirthDate.Text);
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                var result = _service.UpdateAmigo(amigo);
+                MessageBox.Show(result);
+
+                updateId.Text = "";
+                updateName.Text = "";
+                updateAddress.Text = "";
+                updatePhone.Text = "";
+                updateBirthDate.Text = "";
+
+                HideAll();
+                inicio.Show();
             }
             catch
             {
-                // ignored
+                MessageBox.Show("Id must be an int number.");
             }
+        }
 
-            var result = _service.UpdateAmigo(amigo);
+        private void Clonar_Click(object sender, EventArgs e)
+        {
+            Amigo amigo = _amigos[dataGridView1.CurrentCell.RowIndex].Clone();
+
+            var result = _service.AddAmigo(amigo);
             MessageBox.Show(result);
 
-            updateId.Text = "";
-            updateName.Text = "";
-            updateAddress.Text = "";
-            updatePhone.Text = "";
-            updateBirthDate.Text = "";
-
-            HideAll();
-            inicio.Show();
+            _amigos = _service.GetAmigos();
+            var source = new BindingSource();
+            source.DataSource = _amigos;
+            dataGridView1.DataSource = source;
         }
     }
 }

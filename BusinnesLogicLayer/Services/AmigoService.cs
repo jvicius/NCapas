@@ -11,7 +11,8 @@ namespace BusinnesLogicLayer.Services
 
         public AmigoService(string connectionString)
         {
-            _dataService = new AmigoDataService(connectionString);
+            // _dataService = new AmigoDataService(connectionString);
+            _dataService = AmigoDataService.GetInstance(connectionString);
         }
 
         public List<Amigo> GetAmigos()
