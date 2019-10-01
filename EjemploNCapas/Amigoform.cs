@@ -120,5 +120,23 @@ namespace EjemploNCapas
             textBox2.Text = "";
             textBox3.Text = "";
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var list = _service.GetAmigos();
+
+            foreach(Amigo amigo in list)
+            {
+                if (amigo.idamigo.ToString() == textBox6.Text)
+                    _service.AddAmigo(amigo.Clone());
+            }
+           
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
